@@ -1,14 +1,14 @@
-const express = require("express");
-const { body } = require("express-validator");
-const {
+import express from "express";
+import { body } from "express-validator";
+import {
   register,
   login,
   getProfile,
   updateProfile,
   changePassword,
   verifyToken,
-} = require("../controllers/authController");
-const { authenticateToken, authenticatedOnly } = require("../middleware/auth");
+} from "../controllers/authController.js";
+import { authenticateToken, authenticatedOnly } from "../middleware/auth.js";
 
 const router = express.Router();
 
@@ -224,4 +224,4 @@ router.put(
   changePassword
 );
 
-module.exports = router;
+export default router;

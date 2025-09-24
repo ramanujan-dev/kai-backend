@@ -1,5 +1,5 @@
-const { validationResult } = require("express-validator");
-const User = require("../models/User");
+import { validationResult } from "express-validator";
+import User from "../models/User.js";
 
 // Helper function to format validation errors
 const formatValidationErrors = (errors) => {
@@ -11,7 +11,7 @@ const formatValidationErrors = (errors) => {
 };
 
 // Register new customer
-const register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     // Check for validation errors
     const errors = validationResult(req);
@@ -107,7 +107,7 @@ const register = async (req, res) => {
 };
 
 // Login user (customer or admin)
-const login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     // Check for validation errors
     const errors = validationResult(req);
@@ -200,7 +200,7 @@ const login = async (req, res) => {
 };
 
 // Get current user profile
-const getProfile = async (req, res) => {
+export const getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
 
@@ -241,7 +241,7 @@ const getProfile = async (req, res) => {
 };
 
 // Update user profile
-const updateProfile = async (req, res) => {
+export const updateProfile = async (req, res) => {
   try {
     // Check for validation errors
     const errors = validationResult(req);
@@ -326,7 +326,7 @@ const updateProfile = async (req, res) => {
 };
 
 // Change password
-const changePassword = async (req, res) => {
+export const changePassword = async (req, res) => {
   try {
     // Check for validation errors
     const errors = validationResult(req);
@@ -378,7 +378,7 @@ const changePassword = async (req, res) => {
 };
 
 // Verify token (for frontend auth state)
-const verifyToken = async (req, res) => {
+export const verifyToken = async (req, res) => {
   try {
     // If we reach here, token is valid (middleware already verified it)
     res.status(200).json({
@@ -395,13 +395,4 @@ const verifyToken = async (req, res) => {
       message: "Token verification failed",
     });
   }
-};
-
-module.exports = {
-  register,
-  login,
-  getProfile,
-  updateProfile,
-  changePassword,
-  verifyToken,
 };

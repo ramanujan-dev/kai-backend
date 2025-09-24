@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const fixedDepositSchema = new mongoose.Schema(
   {
@@ -543,4 +543,4 @@ fixedDepositSchema.statics.getAnalytics = function (userId = null) {
   ]);
 };
 
-module.exports = mongoose.model("FixedDeposit", fixedDepositSchema);
+export default mongoose.model("FixedDeposit", fixedDepositSchema);

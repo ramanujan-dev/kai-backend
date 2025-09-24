@@ -2,8 +2,12 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "swagger-autogen": "node swagger/swagger.js",
+    "start": "npm-run-all -p \"swagger-autogen\" && nodemon index.js",
+    "dev": "nodemon --trace-warnings index.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +21,12 @@
     "express-validator": "^7.2.1",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.18.1"
+    "mongoose": "^8.18.1",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "npm-run-all": "^4.1.5"
   }
 }

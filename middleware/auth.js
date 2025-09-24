@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 // Middleware to authenticate JWT token
-const authenticateToken = async (req, res, next) => {
+export const authenticateToken = async (req, res, next) => {
   try {
     // Get token from header
     const authHeader = req.headers.authorization;
@@ -102,22 +102,22 @@ const authorizeRole = (...roles) => {
 };
 
 // Middleware to restrict access to customers only
-const customerOnly = (req, res, next) => {
+export const customerOnly = (req, res, next) => {
   return authorizeRole("customer")(req, res, next);
 };
 
 // Middleware to restrict access to admins only
-const adminOnly = (req, res, next) => {
+export const adminOnly = (req, res, next) => {
   return authorizeRole("admin")(req, res, next);
 };
 
 // Middleware to allow both customers and admins
-const authenticatedOnly = (req, res, next) => {
+export const authenticatedOnly = (req, res, next) => {
   return authorizeRole("customer", "admin")(req, res, next);
 };
 
 // Optional authentication - doesn't fail if no token provided
-const optionalAuth = async (req, res, next) => {
+export const optionalAuth = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
     const token =
@@ -152,13 +152,4 @@ const optionalAuth = async (req, res, next) => {
     req.user = null;
     next();
   }
-};
-
-module.exports = {
-  authenticateToken,
-  authorizeRole,
-  customerOnly,
-  adminOnly,
-  authenticatedOnly,
-  optionalAuth,
 };

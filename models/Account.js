@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-
+import mongoose from "mongoose";
 const accountSchema = new mongoose.Schema(
   {
     accountNumber: {
@@ -340,4 +339,4 @@ accountSchema.statics.calculateInterestForAllSavingsAccounts =
     return results;
   };
 
-module.exports = mongoose.model("Account", accountSchema);
+export default mongoose.model("Account", accountSchema);

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const transactionSchema = new mongoose.Schema(
   {
@@ -465,4 +465,4 @@ transactionSchema.statics.getAnalytics = function (accountId, period = "30d") {
   ]);
 };
 
-module.exports = mongoose.model("Transaction", transactionSchema);
+export default mongoose.model("Transaction", transactionSchema);
